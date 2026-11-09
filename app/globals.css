@@ -1,26 +1,83 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8faf9;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --card-foreground: #0f172a;
+  --muted: #f1f5f4;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --input: #d7dee6;
+  --primary: #059669;
+  --primary-foreground: #ffffff;
+  --primary-soft: #ecfdf5;
+  --accent: #0ea5e9;
+  --destructive: #dc2626;
+  --warning: #d97706;
+  --success: #16a34a;
+  --ring: #10b981;
+  --chart-1: #059669;
+  --radius: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b1210;
+    --foreground: #e7efec;
+    --card: #111a17;
+    --card-foreground: #e7efec;
+    --muted: #17221e;
+    --muted-foreground: #93a39d;
+    --border: #22312c;
+    --input: #2b3c36;
+    --primary: #10b981;
+    --primary-foreground: #04120d;
+    --primary-soft: #0f2a21;
+    --accent: #38bdf8;
+    --destructive: #f87171;
+    --warning: #fbbf24;
+    --success: #4ade80;
+    --ring: #34d399;
+    --chart-1: #0fa875;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-destructive: var(--destructive);
+  --color-warning: var(--warning);
+  --color-success: var(--success);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-geist-sans), system-ui, sans-serif;
+  }
+  input[type="number"]::-webkit-inner-spin-button {
+    opacity: 0.4;
+  }
 }

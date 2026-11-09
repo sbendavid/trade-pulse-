@@ -1,36 +1,26 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TradePulse Web
 
-## Getting Started
+Next.js 16 web app for TradePulse (App Router, Tailwind 4, React Query, Zustand). It talks to the TradePulse API.
 
-First, run the development server:
+## Run locally
+
+Start the API first (see the server repo), then:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env.local   # NEXT_PUBLIC_API_URL=http://localhost:5000/api/v1
+npm run dev                  # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`lib/core` (shared types, schemas, invoice math) and `lib/api-client` are copies of the code in the server and mobile repos. Keep them in sync when you change them.
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Push this repo to GitHub.
+2. In Vercel: **Add New → Project**, import the repo. The framework (Next.js) is detected automatically. Leave the root directory as `/`.
+3. Add the environment variable `NEXT_PUBLIC_API_URL` = `https://<your-render-service>.onrender.com/api/v1`.
+4. Deploy. Then go back to Render and set the API's `APP_URL` and `CORS_ORIGINS` to your Vercel URL. Otherwise the browser blocks API calls.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every push to `main` deploys to production. Pull requests get preview URLs. To make preview URLs work against the API, add them to `CORS_ORIGINS` too.
+
+Custom domain: Vercel → Project → Settings → Domains. Then update `APP_URL` / `CORS_ORIGINS` on Render to match.
