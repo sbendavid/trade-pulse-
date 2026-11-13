@@ -3,8 +3,12 @@
 import { ApiClientError, createApiClient } from "@/lib/api-client";
 import { useAuth } from "./auth-store";
 
+// Must start with NEXT_PUBLIC_ so Next.js inlines it into the browser bundle at build time.
 export const API_URL =
-  process.env.NEXT_API_URL ?? "http://localhost:5000/api/v1";
+  process.env.NEXT_PUBLIC_API_URL ??
+  (process.env.NODE_ENV === "production"
+    ? "https://trade-pulse-server.onrender.com/api/v1"
+    : "http://localhost:5000/api/v1");
 
 export const api = createApiClient({
   baseUrl: API_URL,
